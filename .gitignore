@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+venv/
+
+# Generated files by the pipeline
+output/
+
+# Coverage and testing tools
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Local variables and secrets
+.env
+.env.*
+
+# macOS system files
+.DS_Store
+
+# Editors
+.idea/
+.vscode/

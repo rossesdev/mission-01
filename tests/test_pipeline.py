@@ -17,7 +17,6 @@ class TestPipeline(unittest.TestCase):
         result = validate_order(order, set())
 
         self.assertEqual(result["rejection_reason"], "Non-positive value")
-        self.assertEqual(result["order_id"], "1")
 
     def test_accepts_order_when_all_fields_are_valid(self):
         order = {
@@ -31,6 +30,8 @@ class TestPipeline(unittest.TestCase):
         result = validate_order(order, set())
 
         self.assertIsNone(result.get("rejection_reason"))
+        self.assertEqual(result["order_id"], "2")
+
 
     def test_rejects_order_when_order_id_is_duplicate(self):
         order = {
@@ -43,7 +44,7 @@ class TestPipeline(unittest.TestCase):
 
         duplicated_order = {
             "order_id": "1",
-            "created_at": "2026-20-07T12:00:00",
+            "created_at": "2026-12-07T12:00:00",
             "customer_id": "126",
             "amount": "16.00",
             "status": "cancelled",
