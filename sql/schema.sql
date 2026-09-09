@@ -1,4 +1,4 @@
- CREATE TABLE IF NOT EXISTS orders (
+CREATE TABLE IF NOT EXISTS orders (
     order_id TEXT PRIMARY KEY NOT NULL,
     created_at TEXT NOT NULL,
     customer_id TEXT NOT NULL,
@@ -14,4 +14,4 @@ CREATE TABLE IF NOT EXISTS rejected_orders (
     amount TEXT,
 	status TEXT,
     rejection_reason TEXT NOT NULL
-)
+);
