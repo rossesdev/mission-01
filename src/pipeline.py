@@ -22,7 +22,8 @@ def valid_amount(val):
         return (False, cleaned_val, "Empty value")
 
     try:
-        amount = Decimal(cleaned_val)
+        amount = round(Decimal(cleaned_val), 2)
+
     except (ValueError, ArithmeticError):
         return (False, cleaned_val, "Invalid amount")
 
@@ -218,8 +219,10 @@ def validate_folder(folder):
 
 
 def main():
+  
     orders = load_orders('data/orders.csv')
     valid_orders, invalid_orders = process_orders(orders)
+
     validate_folder("output")
     create_summary_json(valid_orders, invalid_orders)
     create_csv(invalid_orders, 'rejected_orders.csv', fields=GENERIC_FIELDS + ["rejection_reason"])
