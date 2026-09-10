@@ -29,7 +29,7 @@ def valid_amount(val):
 
     if not amount.is_finite():
         return False, cleaned_val, "Amount must be finite"
-    
+
     if amount <= 0:
         return (False, cleaned_val, "Non-positive value")
 
@@ -169,13 +169,12 @@ def calculate_summary(valid_orders, invalid_orders):
     group_by_status = {}
     sum_amount = 0
     sum_paid_amount = 0
-    
-    
+
     initial_rows = len(valid_orders) + len(invalid_orders)
     valid_rows = len(valid_orders)
     invalid_rows = len(invalid_orders)
     duplicated_rows = sum(1 for row in invalid_orders if row.get('rejection_reason') == ERROR_DUPLICATED_ORDER_ID)
-  
+
     for valid_order in valid_orders:
         status = valid_order.get("status")
         amount = valid_order.get("amount", 0)
@@ -219,11 +218,11 @@ def validate_folder(folder):
 
 
 def main():
-  
     orders = load_orders('data/orders.csv')
     valid_orders, invalid_orders = process_orders(orders)
 
     validate_folder("output")
+
     create_summary_json(valid_orders, invalid_orders)
     create_csv(invalid_orders, 'rejected_orders.csv', fields=GENERIC_FIELDS + ["rejection_reason"])
     create_csv(valid_orders, 'valid_orders.csv', fields=GENERIC_FIELDS)
